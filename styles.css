@@ -112,3 +112,48 @@ body {
 #thumbnails img.thumbnail.active-thumb {
   border-color: #d4af37; /* gold-ish highlight */
 }
+
+
+
+
+
+
+.image-container {
+  position: relative;
+  display: inline-block;
+}
+
+#image-viewer {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 0.4em 0.6em;
+  border-radius: 0.2em;
+  cursor: pointer;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
+}
+
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.image-container:hover .arrow {
+  opacity: 1;
+}
