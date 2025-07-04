@@ -76,6 +76,9 @@ body {
   cursor: pointer;
 }
 
+#center #image-viewer {
+  cursor: pointer;
+}
 /* When active */
 .load-center.active {
   font-weight: bold;
