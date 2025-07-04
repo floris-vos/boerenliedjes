@@ -19,6 +19,7 @@ body {
 
 /* Fixed regions */
 #top {
+  display: flex;
   grid-area: top;
   background: #f4f4f4;
   padding: 1em;
