@@ -73,6 +73,14 @@ body {
   border-radius: 0.3em;
 }
 
+#image-viewer {
+  display: block;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+
+
 .load-center{
   color: black;
   text-decoration: none;
@@ -122,17 +130,6 @@ body {
 
 
 
-.image-wrapper {
-  position: relative;
-  display: inline-block;
-}
-
-#image-viewer {
-  display: block;
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-}
 
 .arrow {
   position: absolute;
@@ -150,6 +147,10 @@ body {
   z-index: 10;
 }
 
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.7); /* darker background on hover */
+}
+
 .arrow.left {
   left: 10px;
 }
@@ -158,9 +159,7 @@ body {
   right: 10px;
 }
 
-.arrow:hover {
-  background: rgba(0, 0, 0, 0.7); /* darker background on hover */
-}
+
 
 
 .image-wrapper:hover .arrow {
