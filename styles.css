@@ -165,3 +165,9 @@ body {
 .image-wrapper:hover .arrow {
   opacity: 1;
 }
+
+.right-text {
+  text-align: right;
+  font-style: italic;
+  color: #bfa25a; /* subtle gold color */
+}
