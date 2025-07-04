@@ -2,8 +2,10 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent body scroll */
+  overflow: hidden;
   font-family: sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
 }
 
 body {
@@ -11,166 +13,84 @@ body {
   grid-template-areas:
     "top top top"
     "left center right";
-  grid-template-rows: 6vh 1fr;           /* top bar 6% viewport height */
-  grid-template-columns: 15% 70% 15%;    /* left/right 15%, center 70% */
+  grid-template-rows: 6vh 1fr;
+  grid-template-columns: 15% 70% 15%;
   gap: 1%;
   height: 100vh;
 }
 
-/* Fixed regions */
+/* Top Bar */
 #top {
   display: flex;
   grid-area: top;
-  background: #f4f4f4;
-  padding: 1em 2em; /* more horizontal padding */
-  justify-content: space-between; /* pushes items to edges */
-  align-items: center; /* vertically center */
+  background: #1e1e1e;
+  color: #e0e0e0;
+  padding: 1em 2em;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-#left {
-  grid-area: left;
-  background: #ddd;
+/* Sidebar Panels */
+#left, #right {
+  background: #1a1a1a;
   padding: 1em;
   overflow: auto;
+  color: #ccc;
 }
 
-#right {
-  grid-area: right;
-  background: #ddd;
-  padding: 1em;
-  overflow: auto;
-}
-
-/* Scrollable center */
+/* Scrollable Center */
 #center {
-  grid-area: center;
-  background: #eee;
+  background: #222;
   padding: 1em;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* Image wrapper and images */
-
-/* Wrapper with padding and decorative border */
+/* Image Container */
 .image-wrapper {
-  box-sizing: border-box;
-  position: relative;
-  width: 100%;               /* or a fixed width like 600px */
-  aspect-ratio: 4 / 3; 
-  padding: 1%;
-  background: #faf3e0;
+  background: #2c2c2c;
   border: 0.2em solid #d4af37;
-  box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.2);
-  display: inline-block;
-  margin: 1%;
-  border-radius: 0.5em;
+  box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.5);
 }
 
-/* Images sized relative to their wrapper */
+/* Images */
 .image-wrapper img {
-  width: 100%;        /* fills wrapper width */
-  height: auto;       /* keeps aspect ratio */
-  object-fit: cover;
-  display: block;
   border-radius: 0.3em;
 }
 
-#image-viewer {
-  display: block;
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-}
-
-
-.load-center{
-  color: black;
+/* Links */
+.load-center {
+  color: #d4af37;
   text-decoration: none;
-  font-weight: normal;
-  cursor: pointer;
 }
 
-#center #image-viewer {
-  cursor: pointer;
-}
-/* When active */
 .load-center.active {
-  font-weight: bold;
-  color: gray;
-  pointer-events: none; /* disables clicking */
+  color: #999;
 }
 
-.text {
-  cursor: default;
-}
-
-
-#thumbnails {
-  margin-top: 10px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-#thumbnails img.thumbnail {
-  width: 60px;
-  height: 45px;
-  object-fit: cover;
-  cursor: pointer;
-  border: 2px solid transparent;
-  border-radius: 4px;
-  transition: border-color 0.3s;
-}
-
-#thumbnails img.thumbnail.active-thumb {
-  border-color: #d4af37; /* gold-ish highlight */
-}
-
-
-
-
-
-
-
+/* Arrows */
 .arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
   color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 0.4em 0.6em;
-  border-radius: 0.2em;
-  cursor: pointer;
-  user-select: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
+  background: rgba(255, 215, 0, 0.2); /* soft gold overlay */
 }
-
 .arrow:hover {
-  background: rgba(0, 0, 0, 0.7); /* darker background on hover */
+  background: rgba(255, 215, 0, 0.4);
 }
 
-.arrow.left {
-  left: 10px;
+/* Thumbnails */
+#thumbnails img.thumbnail {
+  border: 2px solid transparent;
+}
+#thumbnails img.thumbnail.active-thumb {
+  border-color: #d4af37;
 }
 
-.arrow.right {
-  right: 10px;
-}
-
-
-
-
-.image-wrapper:hover .arrow {
-  opacity: 1;
-}
-
+/* Top Bar Right Text */
 .right-text {
   text-align: right;
   font-style: italic;
-  color: #bfa25a; /* subtle gold color */
+  color: #d4af37;
+  max-width: 40%;
+  overflow-wrap: break-word;
 }
