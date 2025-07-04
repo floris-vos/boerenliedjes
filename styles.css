@@ -51,6 +51,7 @@ body {
 
 /* Wrapper with padding and decorative border */
 .image-wrapper {
+  box-sizing: border-box;
   position: relative;
   width: 100%;               /* or a fixed width like 600px */
   aspect-ratio: 4 / 3; 
