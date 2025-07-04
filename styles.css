@@ -50,7 +50,7 @@ body {
 /* Image wrapper and images */
 
 /* Wrapper with padding and decorative border */
-.img-wrapper {
+.image-wrapper {
   padding: 1%;
   background: #faf3e0;
   border: 0.2em solid #d4af37;
@@ -61,7 +61,7 @@ body {
 }
 
 /* Images sized relative to their wrapper */
-.img-wrapper img {
+.image-wrapper img {
   width: 100%;        /* fills wrapper width */
   height: auto;       /* keeps aspect ratio */
   object-fit: cover;
