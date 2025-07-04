@@ -1,0 +1,70 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* Prevent body scroll */
+  font-family: sans-serif;
+}
+
+body {
+  display: grid;
+  grid-template-areas:
+    "top top top"
+    "left center right";
+  grid-template-rows: 6vh 1fr;           /* top bar 6% viewport height */
+  grid-template-columns: 15% 70% 15%;    /* left/right 15%, center 70% */
+  gap: 1%;
+  height: 100vh;
+}
+
+/* Fixed regions */
+#top {
+  grid-area: top;
+  background: #f4f4f4;
+  padding: 1em;
+}
+
+#left {
+  grid-area: left;
+  background: #ddd;
+  padding: 1em;
+  overflow: auto;
+}
+
+#right {
+  grid-area: right;
+  background: #ddd;
+  padding: 1em;
+  overflow: auto;
+}
+
+/* Scrollable center */
+#center {
+  grid-area: center;
+  background: #eee;
+  padding: 1em;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Image wrapper and images */
+
+/* Wrapper with padding and decorative border */
+.img-wrapper {
+  padding: 1%;
+  background: #faf3e0;
+  border: 0.2em solid #d4af37;
+  box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.2);
+  display: inline-block;
+  margin: 1%;
+  border-radius: 0.5em;
+}
+
+/* Images sized relative to their wrapper */
+.img-wrapper img {
+  width: 100%;        /* fills wrapper width */
+  height: auto;       /* keeps aspect ratio */
+  object-fit: cover;
+  display: block;
+  border-radius: 0.3em;
+}
