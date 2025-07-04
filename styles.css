@@ -121,6 +121,7 @@ body {
   color: #d4af37;
   font-weight: normal;
   cursor: pointer;
+  text-decoration: none;
   display: block;
   margin-bottom: 1em;
 }
