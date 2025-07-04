@@ -87,6 +87,6 @@ body {
 }
 
 .text {
-  cursor: pointer;
+  cursor: default;
   user-select: none;
 }
