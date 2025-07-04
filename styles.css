@@ -119,11 +119,13 @@ body {
 /* Navigation links */
 .load-center {
   color: #d4af37;
-  text-decoration: none;
   font-weight: normal;
   cursor: pointer;
   display: block;
   margin-bottom: 1em;
+}
+
+.load-center.hover {
   text-decoration: underline;
 }
 
