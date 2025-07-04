@@ -68,3 +68,17 @@ body {
   display: block;
   border-radius: 0.3em;
 }
+
+.load-center{
+  color: black;
+  text-decoration: none;
+  font-weight: normal;
+  cursor: pointer;
+}
+
+/* When active */
+.load-center.active {
+  font-weight: bold;
+  color: gray;
+  pointer-events: none; /* disables clicking */
+}
