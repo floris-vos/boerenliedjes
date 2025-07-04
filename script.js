@@ -68,3 +68,9 @@ document.querySelectorAll("#left a.load-center").forEach(link => {
     loadCenterContent(href, link);
   });
 });
+// Optional: load default link content and mark it active
+const defaultLink = document.querySelector('#left a.load-center[data-default="true"]');
+if (defaultLink) {
+  defaultLink.classList.add("active");
+  loadCenterContent(defaultLink.getAttribute("href"));
+}
