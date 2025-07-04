@@ -19,10 +19,12 @@ function initImageCycling() {
 
       currentIndex = 0;
       img.src = images[currentIndex];
+      renderThumbnails();
 
       img.onclick = () => {
         currentIndex = (currentIndex + 1) % images.length;
         img.src = images[currentIndex];
+        updateActiveThumbnail();
       };
     })
     .catch(error => {
