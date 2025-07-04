@@ -22,6 +22,8 @@ body {
   grid-area: top;
   background: #f4f4f4;
   padding: 1em;
+  justify-content: space-between; /* pushes items to edges */
+  align-items: center; /* vertically center */
 }
 
 #left {
