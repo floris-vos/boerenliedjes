@@ -75,3 +75,30 @@ if (defaultLink) {
   loadCenterContent(defaultLink.getAttribute("href"), defaultLink);
 }
 
+
+function renderThumbnails() {
+  const thumbsDiv = document.getElementById("thumbnails");
+  thumbsDiv.innerHTML = ""; // clear existing
+
+  images.forEach((src, i) => {
+    const thumb = document.createElement("img");
+    thumb.src = src;
+    thumb.classList.add("thumbnail");
+    if(i === currentIndex) thumb.classList.add("active-thumb");
+
+    thumb.addEventListener("click", () => {
+      currentIndex = i;
+      document.getElementById("image-viewer").src = images[currentIndex];
+      updateActiveThumbnail();
+    });
+
+    thumbsDiv.appendChild(thumb);
+  });
+}
+
+function updateActiveThumbnail() {
+  document.querySelectorAll("#thumbnails img").forEach((img, idx) => {
+    img.classList.toggle("active-thumb", idx === currentIndex);
+  });
+}
+
