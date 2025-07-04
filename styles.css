@@ -22,7 +22,7 @@ body {
   display: flex;
   grid-area: top;
   background: #f4f4f4;
-  padding: 1em;
+  padding: 1em 2em; /* more horizontal padding */
   justify-content: space-between; /* pushes items to edges */
   align-items: center; /* vertically center */
 }
