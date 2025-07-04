@@ -31,7 +31,7 @@ function initImageCycling() {
 }
 
 // Load HTML into center div and initialize gallery if needed
-function loadCenterContent(url) {
+function loadCenterContent(url, clickedLink = null) {
   fetch(url)
     .then(response => {
       if (!response.ok) throw new Error('Failed to load ' + url);
@@ -39,9 +39,18 @@ function loadCenterContent(url) {
     })
     .then(html => {
       centerDiv.innerHTML = html;
-
-      // After inserting new content, init image cycling if image-viewer exists
       initImageCycling();
+
+      // 🔸🔸🔸 NEW: Highlight the active link
+      document.querySelectorAll("#left a.load-center").forEach(link => {
+        link.classList.remove("active");
+        link.style.pointerEvents = "auto"; // re-enable others
+      });
+
+      if (clickedLink) {
+        clickedLink.classList.add("active");
+        clickedLink.style.pointerEvents = "none"; // disable current
+      }
     })
     .catch(err => {
       centerDiv.innerHTML = "<p>Fehler beim Laden der Seite.</p>";
@@ -54,9 +63,8 @@ document.querySelectorAll("#left a.load-center").forEach(link => {
   link.addEventListener("click", event => {
     event.preventDefault();
     const href = link.getAttribute("href");
-    loadCenterContent(href);
+
+    // 🔸🔸🔸 Pass the clicked link for highlighting
+    loadCenterContent(href, link);
   });
 });
-
-// Optional: on page load, you can load one of them by default
-// loadCenterContent('gallery.html');
