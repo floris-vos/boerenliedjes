@@ -85,3 +85,8 @@ body {
   color: gray;
   pointer-events: none; /* disables clicking */
 }
+
+.text {
+  cursor: pointer;
+  user-select: none;
+}
