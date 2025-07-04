@@ -1,96 +1,30 @@
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: sans-serif;
-  background-color: #121212;
-  color: #e0e0e0;
-}
-
+/* Global text settings */
 body {
-  display: grid;
-  grid-template-areas:
-    "top top top"
-    "left center right";
-  grid-template-rows: 6vh 1fr;
-  grid-template-columns: 15% 70% 15%;
-  gap: 1%;
-  height: 100vh;
-}
-
-/* Top Bar */
-#top {
-  display: flex;
-  grid-area: top;
-  background: #1e1e1e;
+  font-family: 'Lora', serif;
+  font-size: 16px;
+  line-height: 1.6;
   color: #e0e0e0;
-  padding: 1em 2em;
-  justify-content: space-between;
-  align-items: center;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+  background-color: #121212;
 }
 
-/* Sidebar Panels */
-#left, #right {
-  background: #1a1a1a;
-  padding: 1em;
-  overflow: auto;
-  color: #ccc;
-}
-
-/* Scrollable Center */
-#center {
-  background: #222;
-  padding: 1em;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* Image Container */
-.image-wrapper {
-  background: #2c2c2c;
-  border: 0.2em solid #d4af37;
-  box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.5);
-}
-
-/* Images */
-.image-wrapper img {
-  border-radius: 0.3em;
-}
-
-/* Links */
-.load-center {
+/* Headings */
+h1, h2, h3, .brand {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
   color: #d4af37;
-  text-decoration: none;
+  letter-spacing: 0.5px;
+  margin: 0;
 }
 
-.load-center.active {
-  color: #999;
+/* Optional: top-left logo or site title */
+#top .brand {
+  font-size: 1.5rem;
 }
 
-/* Arrows */
-.arrow {
-  color: white;
-  background: rgba(255, 215, 0, 0.2); /* soft gold overlay */
-}
-.arrow:hover {
-  background: rgba(255, 215, 0, 0.4);
-}
-
-/* Thumbnails */
-#thumbnails img.thumbnail {
-  border: 2px solid transparent;
-}
-#thumbnails img.thumbnail.active-thumb {
-  border-color: #d4af37;
-}
-
-/* Top Bar Right Text */
+/* Optional: poetic or italic texts */
 .right-text {
-  text-align: right;
+  font-family: 'Playfair Display', serif;
   font-style: italic;
+  font-size: 1rem;
   color: #d4af37;
-  max-width: 40%;
-  overflow-wrap: break-word;
 }
