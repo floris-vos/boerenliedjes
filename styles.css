@@ -89,3 +89,26 @@ body {
 .text {
   cursor: default;
 }
+
+
+#thumbnails {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+#thumbnails img.thumbnail {
+  width: 60px;
+  height: 45px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+#thumbnails img.thumbnail.active-thumb {
+  border-color: #d4af37; /* gold-ish highlight */
+}
