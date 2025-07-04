@@ -104,3 +104,16 @@ function updateActiveThumbnail() {
   });
 }
 
+function prevImage() {
+  if (images.length === 0) return;
+  currentIndex = (currentIndex - 1 + images.length) % images.length;
+  document.getElementById("image-viewer").src = images[currentIndex];
+  updateActiveThumbnail();
+}
+
+function nextImage() {
+  if (images.length === 0) return;
+  currentIndex = (currentIndex + 1) % images.length;
+  document.getElementById("image-viewer").src = images[currentIndex];
+  updateActiveThumbnail();
+}
