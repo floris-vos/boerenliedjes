@@ -2,8 +2,11 @@ html, body {
   margin: 0;
   padding: 0;
   height: 100%;
-  overflow: hidden; /* Prevent body scroll */
-  font-family: sans-serif;
+  overflow: hidden;
+  font-family: 'Lora', serif;
+  background-color: #121212;
+  color: #f0e6d2;
+  box-sizing: border-box;
 }
 
 body {
@@ -11,101 +14,129 @@ body {
   grid-template-areas:
     "top top top"
     "left center right";
-  grid-template-rows: 6vh 1fr;           /* top bar 6% viewport height */
-  grid-template-columns: 15% 70% 15%;    /* left/right 15%, center 70% */
+  grid-template-rows: 6vh 1fr;
+  grid-template-columns: 15% 70% 15%;
   gap: 1%;
   height: 100vh;
 }
 
-/* Fixed regions */
+/* Top bar */
 #top {
-  display: flex;
   grid-area: top;
-  background: #f4f4f4;
-  padding: 1em 2em; /* more horizontal padding */
-  justify-content: space-between; /* pushes items to edges */
-  align-items: center; /* vertically center */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1a1a;
+  padding: 0.5em 1.5em;
+  border-bottom: 1px solid #333;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
 }
 
+/* Left sidebar */
 #left {
   grid-area: left;
-  background: #ddd;
+  background: #1e1e1e;
   padding: 1em;
-  overflow: auto;
+  overflow-y: auto;
+  border-right: 1px solid #333;
 }
 
+/* Right sidebar */
 #right {
   grid-area: right;
-  background: #ddd;
+  background: #1e1e1e;
   padding: 1em;
-  overflow: auto;
+  overflow-y: auto;
+  border-left: 1px solid #333;
 }
 
-/* Scrollable center */
+/* Center content */
 #center {
   grid-area: center;
-  background: #eee;
+  background: #181818;
   padding: 1em;
   overflow-y: auto;
   overflow-x: hidden;
 }
 
-/* Image wrapper and images */
-
-/* Wrapper with padding and decorative border */
+/* Image wrapper */
 .image-wrapper {
   box-sizing: border-box;
   position: relative;
-  width: 100%;               /* or a fixed width like 600px */
-  aspect-ratio: 4 / 3; 
+  width: 100%;
+  aspect-ratio: 4 / 3;
   padding: 1%;
-  background: #faf3e0;
+  background: #262626;
   border: 0.2em solid #d4af37;
-  box-shadow: 0 0.2em 0.5em rgba(0,0,0,0.2);
+  box-shadow: 0 0.3em 0.8em rgba(0,0,0,0.5);
   display: inline-block;
   margin: 1%;
   border-radius: 0.5em;
 }
 
-/* Images sized relative to their wrapper */
 .image-wrapper img {
-  width: 100%;        /* fills wrapper width */
-  height: auto;       /* keeps aspect ratio */
+  width: 100%;
+  height: auto;
   object-fit: cover;
   display: block;
   border-radius: 0.3em;
 }
 
-#image-viewer {
-  display: block;
-  width: 100%;
-  height: auto;
+/* Arrows */
+.arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: white;
+  background: rgba(0,0,0,0.4);
+  padding: 0.4em 0.6em;
+  border-radius: 0.2em;
   cursor: pointer;
+  user-select: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
 }
 
+.arrow:hover {
+  background: rgba(212, 175, 55, 0.5);
+}
 
-.load-center{
-  color: black;
+.arrow.left {
+  left: 10px;
+}
+
+.arrow.right {
+  right: 10px;
+}
+
+.image-wrapper:hover .arrow {
+  opacity: 1;
+}
+
+/* Navigation links */
+.load-center {
+  color: #d4af37;
   text-decoration: none;
   font-weight: normal;
   cursor: pointer;
+  display: block;
+  margin-bottom: 1em;
 }
 
-#center #image-viewer {
-  cursor: pointer;
-}
-/* When active */
 .load-center.active {
   font-weight: bold;
-  color: gray;
-  pointer-events: none; /* disables clicking */
+  color: #888;
+  pointer-events: none;
 }
 
 .text {
   cursor: default;
 }
 
-
+/* Thumbnails */
 #thumbnails {
   margin-top: 10px;
   display: flex;
@@ -125,52 +156,21 @@ body {
 }
 
 #thumbnails img.thumbnail.active-thumb {
-  border-color: #d4af37; /* gold-ish highlight */
+  border-color: #d4af37;
 }
 
-
-
-
-
-
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  color: white;
-  background: rgba(0,0,0,0.4);
-  padding: 0.4em 0.6em;
-  border-radius: 0.2em;
-  cursor: pointer;
-  user-select: none;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 10;
-}
-
-.arrow:hover {
-  background: rgba(0, 0, 0, 0.7); /* darker background on hover */
-}
-
-.arrow.left {
-  left: 10px;
-}
-
-.arrow.right {
-  right: 10px;
-}
-
-
-
-
-.image-wrapper:hover .arrow {
-  opacity: 1;
+/* Top bar text styling */
+.left-text {
+  font-weight: bold;
+  font-size: 1.2em;
+  color: #f5f5f5;
 }
 
 .right-text {
   text-align: right;
   font-style: italic;
-  color: #bfa25a; /* subtle gold color */
+  font-size: 0.95em;
+  max-width: 50%;
+  color: #d4af37;
+  line-height: 1.3em;
 }
