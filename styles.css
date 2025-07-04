@@ -125,7 +125,7 @@ body {
   margin-bottom: 1em;
 }
 
-.load-center.hover {
+.load-center:hover {
   text-decoration: underline;
 }
 
