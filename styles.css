@@ -118,7 +118,7 @@ body {
 
 
 
-.image-container {
+.image-wrapper {
   position: relative;
   display: inline-block;
 }
@@ -154,6 +154,6 @@ body {
   right: 10px;
 }
 
-.image-container:hover .arrow {
+.image-wrapper:hover .arrow {
   opacity: 1;
 }
