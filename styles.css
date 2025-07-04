@@ -154,6 +154,11 @@ body {
   right: 10px;
 }
 
+.arrow:hover {
+  background: rgba(0, 0, 0, 0.7); /* darker background on hover */
+}
+
+
 .image-wrapper:hover .arrow {
   opacity: 1;
 }
