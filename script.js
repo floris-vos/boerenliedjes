@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
         // Add play functionality
         playButton.addEventListener('click', () => {
           // Dynamically generate the path based on the song name and encode the filename
-          const audioPath = `muziek/${encodeURIComponent(songName)}.mp3`;
+          const audioPath = `muziek/${encodeURIComponent(songName)}.M4A`;
           
           // Create an audio element only when play is clicked
           const audio = new Audio(audioPath);
