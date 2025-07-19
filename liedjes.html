@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Music Player</title>
   <style>
     #music {
       max-width: 600px;
@@ -50,6 +49,10 @@
       color: red;
       font-style: italic;
     }
+    .loading {
+      color: #555;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
@@ -59,81 +62,11 @@
         <source id="audio-source" src="" type="audio/mp4">
         Your browser does not support the audio element.
       </audio>
-      <button id="play-pause">Play</button>
+      <button id="play-pause" disabled>Play</button>
     </div>
-    <ul class="song-list" id="song-list"></ul>
+    <ul class="song-list" id="song-list">
+      <li class="loading">Loading songs...</li>
+    </ul>
   </div>
-
-  <script>
-    const audioPlayer = document.getElementById('audio-player');
-    const audioSource = document.getElementById('audio-source');
-    const playPauseButton = document.getElementById('play-pause');
-    const songList = document.getElementById('song-list');
-
-    // Fetch songs from songs.json
-    fetch('songs.json')
-      .then(response => {
-        if (!response.ok) throw new Error('Failed to load songs.json');
-        return response.json();
-      })
-      .then(songs => {
-        // Populate song list
-        songs.forEach((song, index) => {
-          const li = document.createElement('li');
-          li.textContent = song;
-          li.dataset.song = `muziek/${song}.m4a`;
-          li.addEventListener('click', () => loadSong(song, li));
-          songList.appendChild(li);
-
-          // Auto-load the first song
-          if (index === 0) {
-            loadSong(song, li);
-          }
-        });
-      })
-      .catch(err => {
-        songList.innerHTML = `<li class="error">Error loading songs: ${err.message}</li>`;
-        console.error(err);
-      });
-
-    // Load and play a song
-    function loadSong(songTitle, li) {
-      // Update audio source
-      audioSource.src = `muziek/${songTitle}.m4a`;
-      audioPlayer.load(); // Reload audio element with new source
-
-      // Update active song in list
-      document.querySelectorAll('.song-list li').forEach(item => {
-        item.classList.remove('active');
-      });
-      li.classList.add('active');
-
-      // Update play/pause button state
-      updatePlayPauseButton();
-    }
-
-    // Play/pause button logic
-    playPauseButton.addEventListener('click', () => {
-      if (audioPlayer.paused) {
-        audioPlayer.play().catch(err => {
-          console.error('Playback failed:', err);
-          songList.innerHTML = `<li class="error">Error playing song: ${err.message}</li>`;
-        });
-      } else {
-        audioPlayer.pause();
-      }
-    });
-
-    // Update play/pause button text based on audio state
-    function updatePlayPauseButton() {
-      playPauseButton.textContent = audioPlayer.paused ? 'Play' : 'Pause';
-      playPauseButton.disabled = !audioSource.src; // Disable if no song is loaded
-    }
-
-    // Update button state on play/pause events
-    audioPlayer.addEventListener('play', updatePlayPauseButton);
-    audioPlayer.addEventListener('pause', updatePlayPauseButton);
-    audioPlayer.addEventListener('ended', updatePlayPauseButton);
-  </script>
 </body>
 </html>
