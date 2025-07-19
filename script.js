@@ -97,15 +97,32 @@ songs.forEach((song) => {
     });
     li.classList.add("active");
 
-    
+    // Enable play/pause button and update state
+    playPauseButton.disabled = false;
+    updatePlayPauseButton();
   }
 
   // Play/pause button logic
-  
+  playPauseButton.addEventListener("click", () => {
+    if (audioPlayer.paused) {
+      audioPlayer.play().catch(err => {
+        console.error("Playback failed:", err);
+        songList.innerHTML = `<li class="error">Error playing song: ${err.message}. Please try clicking Play again or select another song.</li>`;
+      });
+    } else {
+      audioPlayer.pause();
+    }
+  });
 
   // Update play/pause button text
-  
+  function updatePlayPauseButton() {
+    playPauseButton.textContent = audioPlayer.paused ? "Play" : "Pause";
+  }
 
+  // Update button state on play/pause events
+  audioPlayer.addEventListener("play", updatePlayPauseButton);
+  audioPlayer.addEventListener("pause", updatePlayPauseButton);
+  audioPlayer.addEventListener("ended", updatePlayPauseButton);
 }
 
 // Attach click listeners to sidebar links
