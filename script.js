@@ -65,15 +65,20 @@ function initializeMusicPlayer() {
       }
 
       // Populate song list
-      songs.forEach((song, index) => {
-        const li = document.createElement("li");
-        li.textContent = song;
-        li.dataset.song = `muziek/${song}.m4a`;
-        li.addEventListener("click", () => loadSong(song, li));
-        songList.appendChild(li);
+songs.forEach((song) => {
+  const li = document.createElement("li");
+  li.textContent = song;
+  li.dataset.song = `muziek/${song}.m4a`;
+  li.addEventListener("click", () => {
+    loadSong(song, li);
+    audioPlayer.play().catch(err => {
+      console.error("Playback failed:", err);
+      songList.innerHTML = `<li class="error">Error playing song: ${err.message}. Please try clicking Play again or select another song.</li>`;
+    });
+  });
+  songList.appendChild(li);
+});
 
-        
-      });
     })
     .catch(err => {
       songList.innerHTML = `<li class="error">Failed to load songs.json: ${err.message}. Check file path, server, or JSON format.</li>`;
