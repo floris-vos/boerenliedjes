@@ -139,9 +139,5 @@ if (defaultLink) {
   defaultLink.classList.add("active");
   defaultLink.setAttribute("aria-current", "page");
   defaultLink.tabIndex = -1;
-
-  // Defer actual content load
-  setTimeout(() => {
-    loadCenterContent(defaultLink.getAttribute("href"), defaultLink);
-  }, 0);
+  loadCenterContent(defaultLink.getAttribute("href"), defaultLink);
 }
