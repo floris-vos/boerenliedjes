@@ -134,12 +134,26 @@
       });
   }
 
-  // Run immediately and listen for dynamic loads
-  initMusicPlayer();
-  document.addEventListener("DOMNodeInserted", function (event) {
-    if (event.target.id === "center" && event.target.querySelector("#music")) {
-      console.log("Detected #music div inserted into #center");
-      initMusicPlayer();
-    }
-  });
+  // Try running immediately
+  if (document.getElementById("song-list")) {
+    console.log("Song list found, initializing music player");
+    initMusicPlayer();
+  }
+
+  // Use MutationObserver to detect when #center is updated
+  const centerDiv = document.getElementById("center");
+  if (centerDiv) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach(mutation => {
+        if (mutation.addedNodes.length && document.getElementById("song-list")) {
+          console.log("Detected #song-list in #center, initializing music player");
+          initMusicPlayer();
+          observer.disconnect(); // Stop observing after initialization
+        }
+      });
+    });
+    observer.observe(centerDiv, { childList: true, subtree: true });
+  } else {
+    console.error("Error: #center div not found");
+  }
 })();
