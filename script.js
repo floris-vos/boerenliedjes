@@ -41,10 +41,9 @@ function loadCenterContent(url, clickedLink = null) {
 function initializeMusicPlayer() {
   const audioPlayer = document.getElementById("audio-player");
   const audioSource = document.getElementById("audio-source");
-  const playPauseButton = document.getElementById("play-pause");
   const songList = document.getElementById("song-list");
 
-  if (!audioPlayer || !audioSource || !playPauseButton || !songList) {
+  if (!audioPlayer || !audioSource ||  !songList) {
     console.error("Music player elements not found in liedjes.html");
     songList.innerHTML = `<li class="error">Error: Music player setup failed.</li>`;
     return;
@@ -96,33 +95,11 @@ songs.forEach((song) => {
       item.classList.remove("active");
     });
     li.classList.add("active");
-
-    // Enable play/pause button and update state
-    playPauseButton.disabled = false;
-    updatePlayPauseButton();
   }
 
-  // Play/pause button logic
-  playPauseButton.addEventListener("click", () => {
-    if (audioPlayer.paused) {
-      audioPlayer.play().catch(err => {
-        console.error("Playback failed:", err);
-        songList.innerHTML = `<li class="error">Error playing song: ${err.message}. Please try clicking Play again or select another song.</li>`;
-      });
-    } else {
-      audioPlayer.pause();
-    }
-  });
+ 
 
-  // Update play/pause button text
-  function updatePlayPauseButton() {
-    playPauseButton.textContent = audioPlayer.paused ? "Play" : "Pause";
-  }
 
-  // Update button state on play/pause events
-  audioPlayer.addEventListener("play", updatePlayPauseButton);
-  audioPlayer.addEventListener("pause", updatePlayPauseButton);
-  audioPlayer.addEventListener("ended", updatePlayPauseButton);
 }
 
 // Attach click listeners to sidebar links
