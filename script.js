@@ -72,7 +72,7 @@ function initializeMusicPlayer() {
         li.addEventListener("click", () => loadSong(song, li));
         songList.appendChild(li);
 
-        // Auto-load the first song
+        // Load the first song without auto-playing
         if (index === 0) {
           loadSong(song, li);
         }
@@ -83,7 +83,7 @@ function initializeMusicPlayer() {
       console.error("Error loading songs.json:", err);
     });
 
-  // Load and play a song
+  // Load a song without auto-playing
   function loadSong(songTitle, li) {
     const songUrl = `muziek/${songTitle}.m4a`;
     audioSource.src = songUrl;
@@ -98,12 +98,6 @@ function initializeMusicPlayer() {
     // Enable play/pause button and update state
     playPauseButton.disabled = false;
     updatePlayPauseButton();
-
-    // Attempt to auto-play
-    audioPlayer.play().catch(err => {
-      console.error(`Failed to play ${songUrl}:`, err);
-      songList.innerHTML = `<li class="error">Error playing ${songUrl}: ${err.message}</li>`;
-    });
   }
 
   // Play/pause button logic
@@ -111,7 +105,7 @@ function initializeMusicPlayer() {
     if (audioPlayer.paused) {
       audioPlayer.play().catch(err => {
         console.error("Playback failed:", err);
-        songList.innerHTML = `<li class="error">Error playing song: ${err.message}</li>`;
+        songList.innerHTML = `<li class="error">Error playing song: ${err.message}. Please try clicking Play again or select another song.</li>`;
       });
     } else {
       audioPlayer.pause();
