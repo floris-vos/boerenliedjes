@@ -49,7 +49,7 @@ if (defaultLink) {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-  const musicListContainer = document.getElementById('center'); // The div where songs will be inserted
+  const musicListContainer = document.getElementById('music'); // The div where songs will be inserted
 
   // Fetch the JSON file with song names
   fetch('songs.json')
