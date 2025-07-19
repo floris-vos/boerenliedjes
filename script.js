@@ -72,10 +72,7 @@ function initializeMusicPlayer() {
         li.addEventListener("click", () => loadSong(song, li));
         songList.appendChild(li);
 
-        // Load the first song without auto-playing
-        if (index === 0) {
-          loadSong(song, li);
-        }
+        
       });
     })
     .catch(err => {
