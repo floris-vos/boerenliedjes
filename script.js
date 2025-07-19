@@ -136,14 +136,12 @@ if (defaultLinks.length > 1) {
 }
 const defaultLink = defaultLinks[0];
 if (defaultLink) {
-  const loadDefault = () => {
-    defaultLink.classList.add("active");
-    defaultLink.setAttribute("aria-current", "page");
-    defaultLink.tabIndex = -1;
-    loadCenterContent(defaultLink.getAttribute("href"), defaultLink);
-    document.removeEventListener("click", loadDefault);
-  };
+  defaultLink.classList.add("active");
+  defaultLink.setAttribute("aria-current", "page");
+  defaultLink.tabIndex = -1;
 
-  // Wait for first user click to load anything
-  document.addEventListener("click", loadDefault, { once: true });
+  // Defer actual content load
+  setTimeout(() => {
+    loadCenterContent(defaultLink.getAttribute("href"), defaultLink);
+  }, 0);
 }
