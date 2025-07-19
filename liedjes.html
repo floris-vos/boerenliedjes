@@ -1,12 +1,139 @@
-<div id="music">
-  <div id="media-player">
-    <button id="play-pause">Play</button>
-    <button id="stop">Stop</button>
-    <input type="range" id="seek-slider" min="0" max="100" value="0">
-    <span id="current-time">0:00</span> / <span id="duration">0:00</span>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Music Player</title>
+  <style>
+    #music {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      font-family: Arial, sans-serif;
+    }
+    .player-controls {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .player-controls button {
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    .player-controls button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+    }
+    .song-list {
+      list-style: none;
+      padding: 0;
+    }
+    .song-list li {
+      padding: 10px;
+      cursor: pointer;
+      border-bottom: 1px solid #ddd;
+    }
+    .song-list li:hover {
+      background-color: #f0f0f0;
+    }
+    .song-list li.active {
+      background-color: #e7f1ff;
+      font-weight: bold;
+    }
+    .error {
+      color: red;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div id="music">
+    <div class="player-controls">
+      <audio id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mp4">
+        Your browser does not support the audio element.
+      </audio>
+      <button id="play-pause">Play</button>
+    </div>
+    <ul class="song-list" id="song-list"></ul>
   </div>
-  <div id="song-list">
-    <!-- Song items will be dynamically inserted here -->
-  </div>
-</div>
-<script src="liedjes.js"></script>
+
+  <script>
+    const audioPlayer = document.getElementById('audio-player');
+    const audioSource = document.getElementById('audio-source');
+    const playPauseButton = document.getElementById('play-pause');
+    const songList = document.getElementById('song-list');
+
+    // Fetch songs from songs.json
+    fetch('songs.json')
+      .then(response => {
+        if (!response.ok) throw new Error('Failed to load songs.json');
+        return response.json();
+      })
+      .then(songs => {
+        // Populate song list
+        songs.forEach((song, index) => {
+          const li = document.createElement('li');
+          li.textContent = song;
+          li.dataset.song = `muziek/${song}.m4a`;
+          li.addEventListener('click', () => loadSong(song, li));
+          songList.appendChild(li);
+
+          // Auto-load the first song
+          if (index === 0) {
+            loadSong(song, li);
+          }
+        });
+      })
+      .catch(err => {
+        songList.innerHTML = `<li class="error">Error loading songs: ${err.message}</li>`;
+        console.error(err);
+      });
+
+    // Load and play a song
+    function loadSong(songTitle, li) {
+      // Update audio source
+      audioSource.src = `muziek/${songTitle}.m4a`;
+      audioPlayer.load(); // Reload audio element with new source
+
+      // Update active song in list
+      document.querySelectorAll('.song-list li').forEach(item => {
+        item.classList.remove('active');
+      });
+      li.classList.add('active');
+
+      // Update play/pause button state
+      updatePlayPauseButton();
+    }
+
+    // Play/pause button logic
+    playPauseButton.addEventListener('click', () => {
+      if (audioPlayer.paused) {
+        audioPlayer.play().catch(err => {
+          console.error('Playback failed:', err);
+          songList.innerHTML = `<li class="error">Error playing song: ${err.message}</li>`;
+        });
+      } else {
+        audioPlayer.pause();
+      }
+    });
+
+    // Update play/pause button text based on audio state
+    function updatePlayPauseButton() {
+      playPauseButton.textContent = audioPlayer.paused ? 'Play' : 'Pause';
+      playPauseButton.disabled = !audioSource.src; // Disable if no song is loaded
+    }
+
+    // Update button state on play/pause events
+    audioPlayer.addEventListener('play', updatePlayPauseButton);
+    audioPlayer.addEventListener('pause', updatePlayPauseButton);
+    audioPlayer.addEventListener('ended', updatePlayPauseButton);
+  </script>
+</body>
+</html>
