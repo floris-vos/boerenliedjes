@@ -12,10 +12,11 @@ html, body {
 body {
   display: grid;
   grid-template-areas:
-    "top"
+    "top top"
     "left center";
   grid-template-rows: 8vh 1fr;
-  grid-template-columns: max-content 1fr; /* Left column fits its content */
+  grid-template-columns: min-content 1fr; /* Left column only as wide as it needs */
+  gap: 1%;
   height: 100vh;
 }
 
@@ -47,11 +48,11 @@ body {
 #left {
   grid-area: left;
   background: #d7ccc8;
-  padding: 1.5em 1em;
+  padding: 1.5em 1em 1.5em 1em;
   overflow-y: auto;
   border-right: 2px solid #b69c74;
-  white-space: nowrap;
-  border-radius: 10px;
+  width: max-content;
+  min-width: 10em; /* Prevents collapsing too small */
 }
 
 #left a.load-center {
@@ -86,26 +87,9 @@ body {
   color: #3a2a0d;
 }
 
+/* Optional hover effect */
 #center:hover {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-}
-
-.text {
-  cursor: default;
-  font-size: 1.1rem;
-}
-
-/* Song list styling */
-#song-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  text-align: left;
-}
-
-#song-list li {
-  padding: 0.3em 0;
-  cursor: pointer;
 }
 
 /* Top bar text styling */
@@ -125,13 +109,7 @@ body {
   line-height: 1.3em;
 }
 
-/* Responsive adjustments (optional) */
-@media (max-width: 768px) {
-  #left {
-    padding: 1em 0.5em;
-  }
-
-  #center {
-    padding: 1em;
-  }
+/* Decorative border radius */
+#left {
+  border-radius: 10px;
 }
