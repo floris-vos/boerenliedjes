@@ -3,19 +3,19 @@ html, body {
   padding: 0;
   height: 100%;
   overflow: hidden;
-  font-family: 'Georgia', serif; /* Serif fonts give a classical feel */
-  background-color: #f4f4f4; /* Light, neutral background for a traditional, soft look */
-  color: #3a2a0d; /* Dark brown text for contrast, easier on the eyes */
+  font-family: 'Georgia', serif;
+  background-color: #f4f4f4;
+  color: #3a2a0d;
   box-sizing: border-box;
 }
 
 body {
   display: grid;
   grid-template-areas:
-    "top top top"
-    "left center right";
+    "top top"
+    "left center";
   grid-template-rows: 8vh 1fr;
-  grid-template-columns: 20% 60% 20%;
+  grid-template-columns: min-content 1fr; /* Left column only as wide as it needs */
   gap: 1%;
   height: 100vh;
 }
@@ -26,10 +26,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #5d4037; /* Deep brownish color to evoke a more earthy, classic feel */
+  background: #5d4037;
   padding: 0.8em 2em;
   border-bottom: 2px solid #3e2723;
-  font-family: 'Merriweather', serif; /* Elegant serif font for a traditional look */
+  font-family: 'Merriweather', serif;
   font-size: 1.2rem;
   color: #fff;
 }
@@ -47,10 +47,12 @@ body {
 /* Left sidebar */
 #left {
   grid-area: left;
-  background: #d7ccc8; /* Warm, cream background for contrast with dark text */
-  padding: 1.5em;
+  background: #d7ccc8;
+  padding: 1.5em 1em 1.5em 1em;
   overflow-y: auto;
   border-right: 2px solid #b69c74;
+  width: max-content;
+  min-width: 10em; /* Prevents collapsing too small */
 }
 
 #left a.load-center {
@@ -60,51 +62,34 @@ body {
   text-decoration: none;
   display: block;
   margin-bottom: 1.2em;
-  padding-left: 10px;
+  padding-left: 5px;
 }
 
 #left a.load-center:hover {
-  color: #d32f2f; /* Accent color for links when hovered, like a traditional accent */
+  color: #d32f2f;
   text-decoration: underline;
 }
 
 #left a.load-center.active {
   font-weight: bold;
-  color: #b71c1c; /* Deeper red accent for active link */
+  color: #b71c1c;
   pointer-events: none;
-}
-
-/* Right sidebar */
-#right {
-  grid-area: right;
-  background: #d7ccc8; /* Same warm, cream background for consistency */
-  padding: 1.5em;
-  overflow-y: auto;
-  border-left: 2px solid #b69c74;
-}
-
-.right-text {
-  font-style: italic;
-  font-size: 1rem;
-  max-width: 70%;
-  color: #5d4037; /* Dark brown text for a more traditional tone */
-  line-height: 1.4em;
 }
 
 /* Center content */
 #center {
   grid-area: center;
-  background: #f3e5f5; /* Lighter, calming background for reading */
+  background: #f3e5f5;
   padding: 2em;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Georgia', serif;
-  color: #3a2a0d; /* Consistent text color */
+  color: #3a2a0d;
 }
 
-.text {
-  cursor: default;
-  font-size: 1.1rem;
+/* Optional hover effect */
+#center:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Top bar text styling */
@@ -124,12 +109,7 @@ body {
   line-height: 1.3em;
 }
 
-/* Optional: Adding some decorative borders */
-#left, #right {
+/* Decorative border radius */
+#left {
   border-radius: 10px;
-}
-
-/* Optional: Hover effect for the center content */
-#center:hover {
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
 }
