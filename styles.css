@@ -52,7 +52,6 @@ body {
   overflow-y: auto;
   border-right: 2px solid #b69c74;
   width: fit-content;
-  min-width: 10em; /* Prevents collapsing too small */
 }
 
 #left a.load-center {
