@@ -80,7 +80,7 @@ body {
 #center {
   grid-area: center;
   background: #f3e5f5;
-  padding: 2em;
+  padding: 0;
   overflow-y: auto;
   overflow-x: hidden;
   font-family: 'Georgia', serif;
@@ -94,6 +94,7 @@ body {
 
 #music {
   float: left;
+  padding: 0;
 }
 
 /* Top bar text styling */
