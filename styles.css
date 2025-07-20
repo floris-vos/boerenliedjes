@@ -52,6 +52,7 @@ body {
   overflow-y: auto;
   border-right: 2px solid #b69c74;
   width: fit-content;
+  white-space: nowrap;
 }
 
 #left a.load-center {
