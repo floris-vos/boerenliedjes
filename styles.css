@@ -48,10 +48,10 @@ body {
 #left {
   grid-area: left;
   background: #d7ccc8;
-  padding: 1.5em 1em 1.5em 1em;
+  padding: 0;
   overflow-y: auto;
   border-right: 2px solid #b69c74;
-  width: max-content;
+  width: fit-content;
   min-width: 10em; /* Prevents collapsing too small */
 }
 
