@@ -27,9 +27,9 @@ function loadCenterContent(url, clickedLink = null) {
       }
 
       // Check if liedjes.html was loaded and initialize music player
-      if (url.includes("liedjes.html")) {
-        initializeMusicPlayer();
-      }
+      //if (url.includes("liedjes.html")) {
+      //  initializeMusicPlayer();
+      //}
     })
     .catch(err => {
       centerDiv.innerHTML = `<p>Failed to load ${url}.</p>`;
